@@ -4,18 +4,26 @@
 import random
 from words import words_list 	# Import words list from words file (https://www.randomlists.com/data/words.json)
 
-# Start
-print("Hangman!")
-print("Choose a difficulty:")
-print("Normal - 8 lives")
-print("Medium - 6 lives")
-print("Hard - 3 lives")
+print("Play Hangman!")
+print("You have 6 lives")
 
-choose_difficulty = input("Choose a difficulty! (Type a number to choose)")
 
-def get_random_word():    	# chooses a random word from the list
-    word = random.choice(words_list)
-    return word
+# Get words from list
+def get_random_word():
+    word = random.choice(words_list).upper()
+    return random.choice(word).upper()
+
+letter = get_random_word()
+
+def main():
+    num_of_attempts = 0
+    guesses = []
+    guessed = False
+    word_to_guess = '' * len(letter)
+    print('Guess the word \"', word_to_guess , '\" It is ', len(word_to_guess))
+
+
+
 
 
 
