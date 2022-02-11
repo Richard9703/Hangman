@@ -27,9 +27,10 @@ def start():
         letters_used.add(user_letter)
         if user_letter in num_letters_word:
             num_letters_word.remove(user_letter)
-
     elif user_letter in letters_used:
         print('You have used this letter...Try again.')
+    else: 
+        print('Invalid character...Try again.')
 
 
 
