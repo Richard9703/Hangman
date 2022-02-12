@@ -16,7 +16,64 @@ for words in get_word:
     print('_', end=" ")
 
 
-def show_hangman():
+# Shows the num of letters used
+def show_used_letters(used_letters):
+	num_letters = 0	
+	used_letters = 0
+	for char in get_word:
+		if char in used_letters:
+			print(get_word[num_letters], end=" ")
+			used_letters += 1
+		else:
+			print(" ", end=" ")
+		counter += 1
+	return used_letters	
+
+
+# 
+def hangman():
+	word_length = len(get_word)
+	num_wrong_attempts = 0
+	guess_index = 0
+	letters_guessed = []
+	letters_guessed_correct = 0
+
+	while(num_wrong_attempts != 6 and letters_guessed_correct != word_length):
+		print("Used letters: ")
+		for letter in letters_guessed_correct:
+			print(letter, end=" ")
+		# User input	
+		userInput = input("Guess the word!: ")	
+		# User
+		if(get_word[guess_index] == userInput):
+			print(num_wrong_attempts)
+			guess_index += 1
+			letters_guessed.append(userInput)
+			hangman()
+		else:
+			num_wrong_attempts += 1
+			letters_guessed.append(userInput)
+			print(num_wrong_attempts)
+			letters_guessed_correct = print(letters_guessed)
+			print(hangman)
+
+	print("Nice try!: ")		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def show_hangman(attempts):
 	man = [
 			 """
                    --------
@@ -88,6 +145,8 @@ def show_hangman():
                    -
                 """
 	]
+
+	return man(attempts)
 
 
 
