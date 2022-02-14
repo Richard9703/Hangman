@@ -35,6 +35,7 @@ Starts the hangman game.
 Users will be prompted to guess the letter or word. 
 
 """
+
 def start_hangman(word):
     secret_word = "_" * len(word)
     guessed = False
@@ -48,7 +49,7 @@ def start_hangman(word):
             if user_guess in letters_used:
                 print("The letter has been used! ", user_guess)
             elif user_guess not in word:
-                print(user_guess, "incorrect, try")  
+                print(user_guess, "not in the word..")  
                 attempts -= 1
                 letters_used.append(user_guess)
             else:
@@ -80,6 +81,7 @@ def start_hangman(word):
         print("Congrats, you guessed the word! You win!")
     else:
         print("The word was " + word + ". Maybe next time!")
+
 
 def show_lives(attempts):
     stages = [  # final state: head, torso, both arms, and both legs
