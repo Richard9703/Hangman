@@ -52,16 +52,16 @@ def start_hangman(word):
                 attempts -= 1
                 letters_used.append(user_guess)
             else:
-                print("Nice!", user_guess, " is in the word")
-                letters_used.append()       
+                print(user_guess, " is in the word")
+                letters_used.append(user_guess)       
                 list_of_words = list(secret_word)
                 indices = [i for i, letter in enumerate(word) if letter == user_guess]
                 for index in indices:
                     list_of_words[index] = user_guess
                 secret_word = "".join(list_of_words)
                 if "_" not in secret_word:
-                    user_guess = True
-        elif len(user_guess) == len(word):
+                    guessed = True
+        elif len(user_guess) == len(word) and user_guess.isalpha():
             if user_guess in words_used:
                 print(user_guess, " is the answer!")
             elif user_guess != word:
@@ -73,13 +73,13 @@ def start_hangman(word):
                 secret_word = word
         else:
             print("Try again...")
-            print(show_lives(attempts))
-            print(secret_word)
-            print("\n")
-            if guessed:
-                print("Congrats, you guessed the word! You win!")
-            else:
-                print("The word was " + word + ". Maybe next time!")
+        print(show_lives(attempts))
+        print(secret_word)
+        print("\n")
+    if guessed:
+        print("Congrats, you guessed the word! You win!")
+    else:
+        print("The word was " + word + ". Maybe next time!")
 
 def show_lives(attempts):
     stages = [  # final state: head, torso, both arms, and both legs
