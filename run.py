@@ -44,7 +44,7 @@ def start_hangman(word):
     print("\n")
     while not guessed and attempts > 0:
         user_guess = input("Guess the word: ").upper() 
-        if user_guess == 1 and user_guess:
+        if user_guess == 1 and user_guess.isalpha():
             if user_guess in letters_used:
                 print("The letter has been used! ", user_guess)
             elif user_guess not in word:
@@ -73,13 +73,13 @@ def start_hangman(word):
                 secret_word = word
         else:
             print("Try again...")
-        print(show_lives(attempts))
-        print(secret_word)
-        print("\n")
-        if guessed:
-            print("Congrats, you guessed the word! You win!")
-        else:
-            print("The word was " + word + ". Maybe next time!")
+            print(show_lives(attempts))
+            print(secret_word)
+            print("\n")
+            if guessed:
+                print("Congrats, you guessed the word! You win!")
+            else:
+                print("The word was " + word + ". Maybe next time!")
 
 def show_lives(attempts):
     stages = [  # final state: head, torso, both arms, and both legs
