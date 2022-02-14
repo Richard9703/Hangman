@@ -1,91 +1,117 @@
-import sys
 import random
+from words import word_list
+
+"""
+Function chooses a random word from the 
+imported words list and returns the word 
+in uppercase
+"""
+def pick_random_word():
+    word = random.choice(word_list)
+    return word.upper()  
 
 
-input_name = input("What is your name?\n")
+"""
+User types in their name and 
+gets asked if they would like to play Hangman
+user is then prompted to enter "y" or "n" to initialize the game. 
+"""
+def intro_start():
+    input_name = input("What is your name?\n")
+    print(f"Hello, {input_name}, would you like to play Hangman? y/n")
+    answer = None
+    while answer not in ("y", "n"):
+        answer = input("Enter y or n: ")
+        if answer == "y":
+            print("Game starting...")
+        elif answer == "n":
+            print("Closing game..")
+        else: 
+            print("Please choose an answer...")       
 
 
-# User types in their name
-def intro():
-    print(f"Hello, {input_name}, would you like to play Hangman?")
-    print("Guess the word..")
+def start_hangman():
+    secret_word = "_" * len(word)
+    guessed = False
+    letters_used = []
+    words_used = []
+    attempts = 6
+
+def show_lives(attempts):
+    stages = [  # final state: head, torso, both arms, and both legs
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |     / \\
+                   -
+                """,
+                # head, torso, both arms, and one leg
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |     / 
+                   -
+                """,
+                # head, torso, and both arms
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |      
+                   -
+                """,
+                # head, torso, and one arm
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|
+                   |      |
+                   |     
+                   -
+                """,
+                # head and torso
+                """
+                   --------
+                   |      |
+                   |      O
+                   |      |
+                   |      |
+                   |     
+                   -
+                """,
+                # head
+                """
+                   --------
+                   |      |
+                   |      O
+                   |    
+                   |      
+                   |     
+                   -
+                """,
+                # initial empty state
+                """
+                   --------
+                   |      |
+                   |      
+                   |    
+                   |      
+                   |     
+                   -
+                """
+    ]
+    return stages[attempts]
 
 
-# Word list
-word_list = [
-    "avocado",
-    "chicken",
-    "funds",
-    "bankrupt",
-    "cushion",
-    "filming",
-    "apartment",
-    "radio",
-    "detective",
-    "vinegar",
-    "curtains",
-    "carpet",
-    "addictive",
-    "control",
-    "raining",
-    "sunshine",
-    "diamond",
-    "charcoal",
-    "chocolate",
-    "container",
-    "cubes",
-    "fan",
-    "processor",
-    "sunbed",
-    "towel",
-    "jellyfish",
-    "meals",
-]
-word = random.choice(word_list)  # Takes random word from word list
 
 
-attempts = " "
-lives = 6
-while lives > 0:
-    wrong_try = 0
-    for char in word:
-        if char in attempts:
-            print(char)
-        else:
-            print("_")
-            wrong_try = 1
-
-    if wrong_try == 0:
-        print("Congratulations!")
-        #  Retry the game
-        retry = input("Play again? y/n\n")
-
-        if "y" in retry:
-            intro()
-        elif "n" in retry:
-            sys.exit()
-        else:
-            print("Error")
-
-attempt = input("Guess a letter: ")
-attempts = attempt
-
-if attempt not in word:
-    lives -= 1
-    print("Incorrect!")
-    print(f"{lives} remaining!")
-
-if lives == 0:
-    print("You lost!")
-
-    retry = input("Play again? y/n\n")
-
-    if "y" in retry:
-        intro()
-    elif "n" in retry:
-        sys.exit()
-    else:
-        print("Error")
-
-
-intro()
+intro_start()
