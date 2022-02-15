@@ -46,15 +46,19 @@ word_blank = word_blank()
 print(word_blank)	
 
 def start(word_blank):
-	lives = 6
+	lives = 0
 	word_blank_list = list(word_blank)
 	new_word_blank_list = list(word_blank)
 	used_letter = list(word_blank)
 	used_words = []
 	list_words = list(word)
 
-	while lives > 0:
+	print("" + ' '.join(word_blank_list))
+	while lives < 6:
+
 		user_guess = input("Guess a letter: ")
+
+
 		if len(user_guess) > 1:
 			print("Only 1 letter at a time")
 		elif user_guess in used_words:
@@ -66,7 +70,7 @@ def start(word_blank):
 			while i < len(word):
 				if user_guess == word[i]:
 					word_blank[i] = list_words[i]
-				i = i+1	
+				i = i+1
 
 			if new_word_blank_list == word_blank_list:
 				print("Letter not in word..")
@@ -77,7 +81,7 @@ def start(word_blank):
 					print("Try again!.")
 					print(' '.join(word_blank_list))
 
-			elif list_words!= word_blank_list:
+			elif list_words != word_blank_list:
 				
 				word_blank_list = new_word_blank_list[:]
 				print(' '.join(word_blank_list))
@@ -89,16 +93,71 @@ def start(word_blank):
 						start()
 					quit()
 				else:
-					print("Try another!")	
-	# user_guess = input("Guess a letter: ").upper()
-	# if user_guess in word:
-	# 	print("Correct")
-	# 	for i,x in enumerate(word):
-	# 		if x is user_guess:
-	# 			output[i] = user_guess
-	# else:
-	# 	print("Incorrect", " ", user_guess)			
+					print("Try another!")		
 
 
+def print_scaffold(lives): # prints the scaffold
+		if (lives == 0):
+				print "_________"
+				print "|	 |"
+				print "|"
+				print "|"
+				print "|"
+				print "|"
+				print "|________"
+		elif (lives == 1):
+				print "_________"
+				print "|	 |"
+				print "|	 O"
+				print "|"
+				print "|"
+				print "|"
+				print "|________"
+		elif (lives == 2):
+				print "_________"
+				print "|	 |"
+				print "|	 O"
+				print "|	 |"
+				print "|	 |"
+				print "|"
+				print "|________"
+		elif (lives == 3):
+				print "_________"
+				print "|	 |"
+				print "|	 O"
+				print "|	\|"
+				print "|	 |"
+				print "|"
+				print "|________"
+		elif (lives == 4):
+				print "_________"
+				print "|	 |"
+				print "|	 O"
+				print "|	\|/"
+				print "|	 |"
+				print "|"
+				print "|________"
+		elif (lives == 5):
+				print "_________"
+				print "|	 |"
+				print "|	 O"
+				print "|	\|/"
+				print "|	 |"
+				print "|	/ "
+				print "|________"
+		elif (lives == 6):
+				print "_________"
+				print "|	 |"
+				print "|	 O"
+				print "|	\|/"
+				print "|	 |"
+				print "|	/ \ "
+				print "|________"
+				
+				return
+
+
+
+print_scaffold(lives)
 start(word_blank)
 	
