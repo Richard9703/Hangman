@@ -45,26 +45,51 @@ def word_blank():
 word_blank = word_blank()
 print(word_blank)	
 
-lives = 6
-used_letter = list(word_blank)
-used_words = []
-list_words = list(word)
+def start(word_blank):
+	lives = 6
+	word_blank_list = list(word_blank)
+	new_word_blank_list = list(word_blank)
+	used_letter = list(word_blank)
+	used_words = []
+	list_words = list(word)
 
-while lives > 0:
-	user_guess = input("Guess a letter: ")
-	if len(user_guess) > 1:
-		print("Only 1 letter at a time")
-	elif user_guess in used_words:
-		print("You already used that letter")	
-		print(' '.join(used_words))
-	else: 
-		used_words.append(user_guess)
-		i = 0
-		while i < len(word):
-			if user_guess == word[i]:
-				word_blank[i] = list_words[i]
-			i = i+1	
+	while lives > 0:
+		user_guess = input("Guess a letter: ")
+		if len(user_guess) > 1:
+			print("Only 1 letter at a time")
+		elif user_guess in used_words:
+			print("You already used that letter")	
+			print(' '.join(used_words))
+		else: 
+			used_words.append(user_guess)
+			i = 0
+			while i < len(word):
+				if user_guess == word[i]:
+					word_blank[i] = list_words[i]
+				i = i+1	
 
+			if new_word_blank_list == word_blank_list:
+				print("Letter not in word..")
+				lives -= 1
+				print(lives, "remaining")
+
+				if lives < 6:
+					print("Try again!.")
+					print(' '.join(word_blank_list))
+
+			elif list_words!= word_blank_list:
+				
+				word_blank_list = new_word_blank_list[:]
+				print(' '.join(word_blank_list))
+
+				if list_words == word_blank_list:
+					print("You win!\n")
+					again = input("Play again? Y/N")
+					if again == "Y":
+						start()
+					quit()
+				else:
+					print("Try another!")	
 	# user_guess = input("Guess a letter: ").upper()
 	# if user_guess in word:
 	# 	print("Correct")
@@ -75,5 +100,5 @@ while lives > 0:
 	# 	print("Incorrect", " ", user_guess)			
 
 
-word_blank()
+start(word_blank)
 	
