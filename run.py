@@ -126,12 +126,12 @@ def get_word(word_list):
 def hangman_board(stages, correct_letters, missed_letters, hidden_word):
     print(stages[6 - lives])
     print("You have " + str(lives) + " lives remaining")
-    
+    print()
 
     print("Missed letters:", end=" ")
     for letter in missed_letters:
         print(letter, end=" ")
-   
+    print()
 
     blank = "_" * len(hidden_word)
 
@@ -141,7 +141,7 @@ def hangman_board(stages, correct_letters, missed_letters, hidden_word):
 
     for letter in blank:
         print(letter, end=" ")
-    
+    print()
 
 def get_guess(guessed):
     while True:
@@ -181,13 +181,13 @@ while True:
     # checks win
         all_letters = True
         for i in range(len(hidden_word)):
-           
+            
             if hidden_word[i] not in correct_letters:
                 
                 all_letters = False
                 break
         if all_letters:
-            
+           
             print("Hidden word is " + hidden_word + "! You win!")
             finished = True 
     else:
