@@ -1,4 +1,5 @@
-import random, sys
+import random
+import sys
 
 
 stages = ['''
@@ -115,7 +116,7 @@ stages = ['''
 
     =========''']
 
-words = ["avocado","chicken","funds","bankrupt","cushion","filming","apartment","radio","detective","vinegar","curtains","carpet","addictive","control","raining","sunshine","diamond","charcoal","chocolate","container","cubes","fan","processor","sunbed","towel","jellyfish", "meals",]
+words = ["avocado", "chicken", "funds", "bankrupt", "cushion", "filming", "apartment", "radio", "detective", "vinegar", "curtains", "carpet", "addictive", "control", "raining", "sunshine", "diamond", "charcoal", "chocolate", "container", "cubes", "fan", "processor", "sunbed", "towel", "jellyfish", "meals"]
 
 
 def get_word(word_list):
@@ -143,6 +144,7 @@ def hangman_board(stages, correct_letters, missed_letters, hidden_word):
         print(letter, end=" ")
     print()
 
+
 def get_guess(guessed):
     while True:
         print("\nGuess a letter: ")
@@ -158,9 +160,9 @@ def get_guess(guessed):
             return guess
 
 
-def try_again(): # Allows the user to play again after finishing the game
-       print("Play again? (yes or no)")
-       return input().lower().startswith("y")
+def try_again():     # Allows the user to play again after finishing the game
+        print("Play again? (yes or no)")
+        return input().lower().startswith("y")
 
 
 print("HANGMAN")
@@ -169,11 +171,10 @@ missed_letters = ""
 correct_letters = ""
 hidden_word = get_word(words)
 finished = False
-
-while True:    
+while True:
     hangman_board(stages, correct_letters, missed_letters, hidden_word)
 
-    guess = get_guess(missed_letters + correct_letters) # Type in a letter
+    guess = get_guess(missed_letters + correct_letters)     # Type in a letter
 
     if guess in hidden_word:
         correct_letters = correct_letters + guess
@@ -181,17 +182,13 @@ while True:
     # checks win
         all_letters = True
         for i in range(len(hidden_word)):
-            
             if hidden_word[i] not in correct_letters:
-                
                 all_letters = False
                 break
         if all_letters:
-           
             print("Hidden word is " + hidden_word + "! You win!")
-            finished = True 
+            finished = True
     else:
-        
         missed_letters = missed_letters + guess
         lives -= 1
 
